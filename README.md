@@ -3,7 +3,7 @@
 Personal portfolio website built with Next.js, showcasing my projects, experience, and skills.
 
 ## Live Site
-[vaibhavnagdeo.vercel.app](https://vaibhavnagdeo.vercel.app)
+[vaibhavnagdeo.vercel.app](https://myportfolio-tawny-zeta-35.vercel.app)
 
 ## Built With
 - Next.js 16
