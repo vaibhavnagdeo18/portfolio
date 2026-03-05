@@ -34,8 +34,8 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
                 process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
                 {
-                    from_name: formData.fullName,
-                    from_email: formData.email,
+                    name: formData.fullName,
+                    email: formData.email,
                     message: formData.message,
                     to_email: "vaibhavnagdeo@gmail.com",
                 },
