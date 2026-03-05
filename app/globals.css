@@ -131,10 +131,46 @@
 }
 
 @layer base {
+  html {
+    /* scroll-behavior: smooth; - Removed for performance optimization */
+  }
+
+  /* Optimize jump links */
+  section[id] {
+    scroll-margin-top: 100px;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* GPU Acceleration Utility */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      transition-delay: 0s !important;
+      transition-duration: 0s !important;
+    }
+
+    .animate-bounce,
+    .animate-pulse {
+      animation: none !important;
+    }
   }
 }

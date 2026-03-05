@@ -324,7 +324,7 @@ export function CardStack<T extends CardStackItem>({
                                         {renderCard ? (
                                             renderCard(item, { active: isActive })
                                         ) : (
-                                            <DefaultFanCard item={item} active={isActive} />
+                                            <DefaultFanCard item={item} active={isActive} visible={visible} />
                                         )}
                                     </div>
                                 </motion.div>
@@ -372,18 +372,18 @@ export function CardStack<T extends CardStackItem>({
     );
 }
 
-function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
+function DefaultFanCard({ item, visible }: { item: CardStackItem; active: boolean; visible: boolean }) {
     return (
         <div className="relative h-full w-full">
             {/* image */}
             <div className="absolute inset-0">
-                {item.imageSrc ? (
+                {item.imageSrc && visible ? (
                     <img
                         src={item.imageSrc}
                         alt={item.title}
                         className={cn("h-full w-full object-cover", item.imageClassName)}
                         draggable={false}
-                        loading="eager"
+                        loading="lazy"
                     />
                 ) : (
                     <div className="flex h-full w-full items-center justify-center bg-zinc-900 text-sm text-zinc-500">

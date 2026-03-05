@@ -15,7 +15,7 @@ const projectItems = [
     title: "Payment / Wallet Backend",
     tag: "Secure Transaction Architecture",
     description: "Architected a scalable backend wallet system supporting authentication, balance management, and peer-to-peer transactions using Node.js, PostgreSQL, and Prisma with ACID compliance.",
-    imageSrc: "/Gemini_Generated_Image_nhhylpnhhylpnhhy.png",
+    imageSrc: "/gemini_project.webp",
     imageClassName: "scale-[1.15] origin-top-left",
     href: "https://github.com/vaibhavnagdeo18/payment-wallet-system",
     ctaLabel: "View Source"
@@ -25,7 +25,7 @@ const projectItems = [
     title: "ConfigGuardian AI",
     tag: "AI Infrastructure Analysis",
     description: "Engineered a multi-stage AI pipeline to evaluate infrastructure configuration changes using AWS Bedrock (Nova). Designed risk scoring mechanisms to detect high-risk configurations.",
-    imageSrc: "/configguardian.jpg",
+    imageSrc: "/configguardian.webp",
     href: "https://github.com/vaibhavnagdeo18/configguardian-ai",
     ctaLabel: "Launch App"
   },
@@ -34,7 +34,7 @@ const projectItems = [
     title: "Architect AI",
     tag: "Autonomous Infrastructure Reasoning",
     description: "Deploy a fleet of specialized AI agents — FinOps, SRE, and Performance — to validate your cloud architecture before writing a single line of code. Built with Multi-agent AI, AWS, and Node.js.",
-    imageSrc: "/multiagent architecture.jpeg",
+    imageSrc: "/multiagent_architecture.webp",
     href: "https://github.com/vaibhavnagdeo18/gemini3hackathon",
     ctaLabel: "Launch App"
   },
@@ -43,14 +43,17 @@ const projectItems = [
     title: "Genaiversity Hackathon Winner",
     tag: "AI Motion Arts Visualizer",
     description: "Built AI Manim Visualizer: an AI-driven animation generator converting natural language into Manim-based mathematical visualizations.",
-    imageSrc: "/genaiversity.jpg",
+    imageSrc: "/genaiversity.webp",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7388748428886822912/",
     ctaLabel: "View Post"
   }
 ];
 
+import { ResumeModal } from "@/components/ui/resume-modal";
+
 export default function Home() {
   const [isMobile, setIsMobile] = React.useState(false);
+  const [isResumeModalOpen, setIsResumeModalOpen] = React.useState(false);
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -63,7 +66,7 @@ export default function Home() {
 
   return (
     <main className="w-full relative bg-zinc-950">
-      <PortfolioHero />
+      <PortfolioHero onRequestResume={() => setIsResumeModalOpen(true)} />
 
       {/* Container for subsequent sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-24 sm:space-y-32 pb-24 sm:pb-32">
@@ -191,9 +194,10 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center gap-10">
             <ProfileCard
-              imageSrc="/profile.jpg"
+              imageSrc="/profile.webp"
               name="Vaibhav Nagdeo"
               role="SDE / AI Engineer"
+              onRequestResume={() => setIsResumeModalOpen(true)}
             />
 
             {/* Social Link Buttons */}
@@ -229,6 +233,11 @@ export default function Home() {
       </div>
 
       <SterlingGateKineticNavigation />
+
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
     </main>
   );
 }

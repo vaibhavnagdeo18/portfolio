@@ -14,6 +14,7 @@ interface SpecialCardProps {
         github?: string;
         linkedin?: string;
     };
+    onRequestResume: () => void;
     className?: string;
 }
 
@@ -60,6 +61,7 @@ export default function ProfileCard({
     name,
     role,
     socials,
+    onRequestResume,
     className = "",
 }: SpecialCardProps) {
     const [isHovered, setIsHovered] = useState(false);
@@ -168,14 +170,12 @@ export default function ProfileCard({
                                         {role}
                                     </span>
                                     <span className="h-0.5 w-0.5 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                                    <a
-                                        href="/vaibhav_Zoho2_resume.pdf"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <button
+                                        onClick={onRequestResume}
                                         className="text-xs font-bold text-[#C3E41D] hover:underline transition-all"
                                     >
                                         View Resume
-                                    </a>
+                                    </button>
                                 </motion.div>
                             </motion.div>
                         )}

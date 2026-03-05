@@ -74,7 +74,7 @@ const BlurText: React.FC<BlurTextProps> = ({
                         display: "inline-block",
                         filter: inView ? "blur(0px)" : "blur(10px)",
                         opacity: inView ? 1 : 0,
-                        transform: inView ? "translateY(0)" : `translateY(${direction === "top" ? "-20px" : "20px"})`,
+                        transform: inView ? "translateY(0) translateZ(0)" : `translateY(${direction === "top" ? "-20px" : "20px"}) translateZ(0)`,
                         transition: `all 0.5s ease-out ${i * delay}ms`,
                     }}
                 >
@@ -86,8 +86,9 @@ const BlurText: React.FC<BlurTextProps> = ({
     );
 };
 
-export default function PortfolioHero() {
+export default function PortfolioHero({ onRequestResume }: { onRequestResume: () => void }) {
     const [isDark, setIsDark] = useState(true);
+
     useEffect(() => {
         document.documentElement.classList.add("dark");
     }, []);
@@ -134,11 +135,12 @@ export default function PortfolioHero() {
 
                         {/* Profile Picture */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                            <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
+                            <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w110px md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
                                 <img
-                                    src="/profile.jpg"
+                                    src="/profile.webp"
                                     alt="Profile"
                                     className="w-full h-full object-cover object-top"
+                                    loading="lazy"
                                 />
                             </div>
                         </div>
@@ -156,14 +158,13 @@ export default function PortfolioHero() {
                             className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-400 hover:text-black dark:hover:text-white"
                             style={{ fontFamily: "'Antic', sans-serif" }}
                         />
-                        <a
-                            href="/vaibhav_Zoho2_resume.pdf"
-                            download
+                        <button
+                            onClick={onRequestResume}
                             className="inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-bold transition-all duration-300 border border-[#C3E41D] text-[#C3E41D] hover:bg-[#C3E41D] hover:text-black hover:shadow-[0_0_20px_rgba(195,228,29,0.5)] hover:scale-105 active:scale-95"
                             style={{ fontFamily: "'Fira Code', monospace" }}
                         >
                             Download Resume ↓
-                        </a>
+                        </button>
                     </div>
                 </div>
 
